@@ -5,13 +5,17 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     public Transform followTarget;
-    public Vector3 velocity;
-    public float smoothTime;
+    public Vector3 offset;
+    public float smooth = 0.125f;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Vector3 targetPos = new Vector3(transform.position.x,transform.position.y,followTarget.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position,targetPos,ref velocity, smoothTime);
+        Vector3 desiredPosition = followTarget.position + offset;
+        Vector3 smoothPos = Vector3.Lerp(transform.position, desiredPosition, smooth);
+        transform.position = smoothPos;
+        //transform.LookAt(followTarget);
+        
+       
     }
 
    

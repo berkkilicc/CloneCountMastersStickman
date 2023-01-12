@@ -24,7 +24,7 @@ public class Gates : MonoBehaviour
             {
                 randomNumberIncrease += 1;
             }
-            GateNo.text = randomNumberIncrease.ToString();
+            GateNo.text = "+" + randomNumberIncrease.ToString();
         }
     }
 }
