@@ -6,10 +6,11 @@ using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
+    private Obstacle obstacle;
     Animator anim;
     public Transform player;
-    private int NumberOfClone;
-    [SerializeField] private TextMeshPro Countertxt;
+    public int NumberOfClone;
+    public TextMeshPro Countertxt;
     [SerializeField] private GameObject Clone;
     [Range(0f, 1f)] [SerializeField] private float Distance, Radius;
 
@@ -24,7 +25,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform Character;
     public float playerMoveSpeed;
 
-
+    private void OnEnable()
+    {
+        obstacle = GetComponent<Obstacle>();
+    }
 
 
     void Start()
@@ -35,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         camera = Camera.main;
         gameState = false;
 
+        
 
 
     }
@@ -49,21 +54,34 @@ public class PlayerManager : MonoBehaviour
             gameState = true;
 
         }
+        DestroyClone();
+
+
+
     }
 
 
 
-    private void MakeClone(int number)
+    public void MakeClone(int number)
     {
         for (int i = 0; i < number; i++)
         {
-            Instantiate(Clone, transform.position, Quaternion.identity, transform);
+           Instantiate(Clone, transform.position, Quaternion.identity, transform);
         }
 
         NumberOfClone = transform.childCount - 1;
         Countertxt.text = NumberOfClone.ToString();
 
         FormatClone();
+    }
+
+    public void DestroyClone()
+    {
+        
+            NumberOfClone = transform.childCount - 1;
+            Countertxt.text = NumberOfClone.ToString();
+        
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,6 +103,8 @@ public class PlayerManager : MonoBehaviour
                 MakeClone(NumberOfClone + gateManager.randomNumberIncrease -NumberOfClone);
             }
         }
+
+       
     }
 
     private void MoveThePlayer()
@@ -159,7 +179,7 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-    private void FormatClone()
+    public void FormatClone()
     {
         for (int i = 1; i < player.childCount; i++)
         {
@@ -171,4 +191,6 @@ public class PlayerManager : MonoBehaviour
             player.transform.GetChild(i).DOLocalMove(newPos, 1f).SetEase(Ease.OutBack);
         }
     }
+
+
 }

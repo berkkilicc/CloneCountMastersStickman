@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clone
   - gate
+  - Obstacle
   layers:
   - Default
   - TransparentFX
