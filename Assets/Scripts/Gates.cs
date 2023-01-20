@@ -19,7 +19,7 @@ public class Gates : MonoBehaviour
         }
         else
         {
-            randomNumberIncrease = Random.Range(10, 100);
+            randomNumberIncrease = Random.Range(50, 100);
             if (randomNumberIncrease %2 !=0)
             {
                 randomNumberIncrease += 1;

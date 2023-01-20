@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Instantiate,Move,Radius")]
+
     private Obstacle obstacle;
     Animator anim;
     public Transform player;
@@ -14,6 +16,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject Clone;
     [Range(0f, 1f)] [SerializeField] private float Distance, Radius;
 
+    [Header("Raycast")]
+
+    RaycastHit hit;
+    public LayerMask Enemy;
+
     [Header("Move")]
 
     public bool Touch;
@@ -21,9 +28,15 @@ public class PlayerManager : MonoBehaviour
     private Vector3 mouseStartPosition;
     private Vector3 playerStartPosition;
     public float playerTouchSpeed;
-    private Camera camera;
+    [SerializeField] private Camera cam;
     [SerializeField] private Transform Character;
     public float playerMoveSpeed;
+
+
+    [SerializeField] private Transform enemyarea;
+    [SerializeField] private bool attack;
+
+    
 
     private void OnEnable()
     {
@@ -36,10 +49,10 @@ public class PlayerManager : MonoBehaviour
         player = transform;
         NumberOfClone = transform.childCount - 1;
         Countertxt.text = NumberOfClone.ToString();
-        camera = Camera.main;
+        cam = Camera.main;
         gameState = false;
 
-        
+
 
 
     }
@@ -47,14 +60,36 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveThePlayer();
-
         if (Input.GetMouseButtonDown(0))
         {
             gameState = true;
 
         }
+
+
+        MoveThePlayer();
+
+        if (gameState)
+        {
+            player.Translate(player.forward * Time.deltaTime * playerMoveSpeed);
+
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Animator>().SetBool("run", true);
+            }
+
+        }
+         if (FindObjectOfType<Enemy>().enemyOfClone == 0)
+        {
+            attack = false;
+            playerMoveSpeed = 5f;
+            FormatClone();
+        }
+
+
+
         DestroyClone();
+        RayCast();
 
 
 
@@ -66,7 +101,7 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-           Instantiate(Clone, transform.position, Quaternion.identity, transform);
+            Instantiate(Clone, transform.position, Quaternion.identity, transform);
         }
 
         NumberOfClone = transform.childCount - 1;
@@ -77,11 +112,11 @@ public class PlayerManager : MonoBehaviour
 
     public void DestroyClone()
     {
-        
-            NumberOfClone = transform.childCount - 1;
-            Countertxt.text = NumberOfClone.ToString();
-        
-       
+
+        NumberOfClone = transform.childCount - 1;
+        Countertxt.text = NumberOfClone.ToString();
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,28 +128,41 @@ public class PlayerManager : MonoBehaviour
 
             var gateManager = other.GetComponent<Gates>();
 
-           
+
             if (gateManager.multiply)
             {
                 MakeClone(NumberOfClone * gateManager.randomNumberMultiply - NumberOfClone);
             }
             else
             {
-                MakeClone(NumberOfClone + gateManager.randomNumberIncrease -NumberOfClone);
+                MakeClone(NumberOfClone + gateManager.randomNumberIncrease - NumberOfClone);
             }
         }
+        if (other.gameObject.tag == "Enemy" && FindObjectOfType<Enemy>().enemyOfClone >= 1)
+        {
+            Debug.Log("Enemy'e dokundu");
+            attack = true;
+            playerMoveSpeed = 1.5f;
+           
+            other.transform.GetChild(1).GetComponent<Enemy>().Attack(transform);
+        }
+        
+        
 
-       
+
+
+
+
     }
 
-    private void MoveThePlayer()
+    public void MoveThePlayer()
     {
         if (Input.GetMouseButtonDown(0) && gameState)
         {
             Touch = true;
 
             Plane plane = new Plane(Vector3.up, 0f);
-            var ray = camera.ScreenPointToRay(Input.mousePosition);
+            var ray = cam.ScreenPointToRay(Input.mousePosition);
 
             if (plane.Raycast(ray, out var distance))
             {
@@ -131,7 +179,7 @@ public class PlayerManager : MonoBehaviour
         if (Touch)
         {
             var plane = new Plane(Vector3.up, 0f);
-            var ray = camera.ScreenPointToRay(Input.mousePosition);
+            var ray = cam.ScreenPointToRay(Input.mousePosition);
 
             if (plane.Raycast(ray, out var distance))
             {
@@ -168,15 +216,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (gameState)
-        {
-            player.Translate(player.forward * Time.deltaTime * playerMoveSpeed);
-            for (int i = 1; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).GetComponent<Animator>().SetBool("run", true);
-            }
 
-        }
 
     }
     public void FormatClone()
@@ -189,8 +229,27 @@ public class PlayerManager : MonoBehaviour
             Vector3 newPos = new Vector3(x, -0.485f, z);
 
             player.transform.GetChild(i).DOLocalMove(newPos, 1f).SetEase(Ease.OutBack);
+
+
         }
     }
+
+    public void RayCast()
+    {
+
+        if (Physics.Raycast(transform.position, Vector3.forward, out hit, 3f, Enemy))
+        {
+            Debug.DrawRay(transform.position, Vector3.forward * hit.distance, Color.red);
+            Debug.Log("Enemy görüldü");
+
+        }
+    }
+
+
+
+
+
+
 
 
 }

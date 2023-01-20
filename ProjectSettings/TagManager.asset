@@ -7,6 +7,8 @@ TagManager:
   - Clone
   - gate
   - Obstacle
+  - Enemy
+  - EnemyArea
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
