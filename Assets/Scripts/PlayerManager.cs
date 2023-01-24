@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -88,8 +88,8 @@ public class PlayerManager : MonoBehaviour
         if (FindObjectOfType<Enemy>().enemyOfClone == 0)
         {
             attack = false;
-            playerMoveSpeed = 5f;
-            //FormatClone();
+            //playerMoveSpeed = 5f;
+            
         }
 
         DestroyClone();
@@ -152,11 +152,16 @@ public class PlayerManager : MonoBehaviour
             attack = true;
             playerMoveSpeed = 1f;
 
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Animator>().SetBool("run", true);
+            }
+
         }
         else
         {
             attack = false;
-            playerMoveSpeed = 5f;
+            MoveThePlayer();
 
         }
 
@@ -179,9 +184,9 @@ public class PlayerManager : MonoBehaviour
 
         if (other.gameObject.tag == "Boss")
         {
-            Destroy(other.gameObject,5f);
-            playerMoveSpeed = 1f;
-            playerTouchSpeed = 1f;
+            Destroy(other.gameObject,2f);
+            playerMoveSpeed = 0;
+            playerTouchSpeed = 1;
         }
     }
 
