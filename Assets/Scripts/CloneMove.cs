@@ -14,7 +14,7 @@ public class CloneMove : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("Player");

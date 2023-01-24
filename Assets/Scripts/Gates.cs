@@ -14,12 +14,12 @@ public class Gates : MonoBehaviour
     {
         if (multiply)
         {
-            randomNumberMultiply = Random.Range(1, 3);
+            randomNumberMultiply = Random.Range(1, 2);
             GateNo.text = "X" + randomNumberMultiply;
         }
         else
         {
-            randomNumberIncrease = Random.Range(50, 100);
+            randomNumberIncrease = Random.Range(30, 50);
             if (randomNumberIncrease %2 !=0)
             {
                 randomNumberIncrease += 1;

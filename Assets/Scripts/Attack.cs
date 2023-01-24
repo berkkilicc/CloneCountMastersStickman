@@ -8,8 +8,7 @@ public class Attack : MonoBehaviour
     private Enemy enm;
     public Transform player;
     [Range(0f, 1f)] [SerializeField] private float Distance, Radius;
-    [SerializeField] private GameObject bloodEffects;
-    [SerializeField] private GameObject bluebloodEffects;
+
 
     //[SerializeField] private Transform enemyarea;
     //[SerializeField] private bool attack;
@@ -22,6 +21,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         player = transform;
+     
     }
 
 
@@ -29,9 +29,8 @@ public class Attack : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyArea")
         {
-            GameObject bloods = Instantiate(bloodEffects, transform.position, Quaternion.identity, transform);
-            GameObject bluebloods = Instantiate(bluebloodEffects, transform.position, Quaternion.identity, transform);
-            FindObjectOfType<PlayerManager>().RayCast();
+      
+            
             Destroy(other.gameObject);
             FindObjectOfType<Enemy>().enemyOfClone -= 1;
             FindObjectOfType<Enemy>().enemyCounterTxt.text.ToString();
@@ -41,15 +40,27 @@ public class Attack : MonoBehaviour
         }
         else if (FindObjectOfType<Enemy>().enemyOfClone == 0 && FindObjectOfType<Enemy>().enemyCounterTxt.text == 0.ToString())
         {
-            GameObject bloods = Instantiate(bloodEffects, transform.position, Quaternion.identity, transform);
-            GameObject bluebloods = Instantiate(bluebloodEffects, transform.position, Quaternion.identity, transform);
-            FindObjectOfType<PlayerManager>().playerMoveSpeed = 5f;
-            FindObjectOfType<PlayerManager>().playerTouchSpeed = 5f;
             FindObjectOfType<Enemy>().enemyOfClone -= 1;
             FindObjectOfType<Enemy>().enemyCounterTxt.text.ToString();
         }
 
+        if (other.gameObject.tag == "Enemy" && FindObjectOfType<Enemy>().enemyOfClone >= 1)
+        {
+            Debug.Log("Enemy'e dokundu");
+            FindObjectOfType<PlayerManager>().attack = true;
+            FindObjectOfType<PlayerManager>().playerMoveSpeed = 1f;
+            
+        }
+        else
+        {
+            FindObjectOfType<PlayerManager>().attack = false;
+            FindObjectOfType<PlayerManager>().playerMoveSpeed = 5f;
+        }
+
+
     }
+
+
 
     public void AfterAttack()
     {

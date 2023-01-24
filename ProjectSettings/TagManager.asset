@@ -9,6 +9,11 @@ TagManager:
   - Obstacle
   - Enemy
   - EnemyArea
+  - Clamp Area
+  - ClampStart
+  - ClampExit
+  - Exit
+  - Boss
   layers:
   - Default
   - TransparentFX

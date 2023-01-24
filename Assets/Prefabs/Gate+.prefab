@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4710023020869454643}
   - component: {fileID: 4710023020869454636}
   - component: {fileID: 4710023020869454637}
-  - component: {fileID: 4710023020869454642}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4710023020869454642
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4710023020869454640}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4710023020895094386
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +94,6 @@ GameObject:
   - component: {fileID: 4710023020895094381}
   - component: {fileID: 4710023020895094382}
   - component: {fileID: 4710023020895094383}
-  - component: {fileID: 4710023020895094380}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -182,20 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4710023020895094380
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4710023020895094386}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4710023021411897406
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +179,6 @@ GameObject:
   - component: {fileID: 4710023021411897402}
   - component: {fileID: 4710023021411897403}
   - component: {fileID: 4710023021411897400}
-  - component: {fileID: 4710023021411897396}
   m_Layer: 0
   m_Name: Gate+
   m_TagString: gate
@@ -224,7 +193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710023021411897406}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.921, y: 1.5, z: -8.97}
   m_LocalScale: {x: 5.5, y: 2, z: 0.01}
   m_ConstrainProportionsScale: 0
@@ -314,22 +283,6 @@ MonoBehaviour:
   randomNumberMultiply: 0
   randomNumberIncrease: 0
   multiply: 0
---- !u!54 &4710023021411897396
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4710023021411897406}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4710023021479625982
 GameObject:
   m_ObjectHideFlags: 0

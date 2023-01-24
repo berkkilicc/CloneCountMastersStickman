@@ -7,6 +7,7 @@ using TMPro;
 public class Obstacle : MonoBehaviour
 {
     private PlayerManager plymanager;
+    [SerializeField] private GameObject blackbloodEffects;
     private void Start()
     {
         plymanager = GetComponent<PlayerManager>();
@@ -16,10 +17,12 @@ public class Obstacle : MonoBehaviour
     {
         if (other.gameObject.tag == "Clone")
         {
+            GameObject blackbloods = Instantiate(blackbloodEffects, transform.position, Quaternion.identity, transform);
             Debug.Log("Dokundu");
             Destroy(other.gameObject, 0.1f);
             FindObjectOfType<PlayerManager>().NumberOfClone -= 1;
             FindObjectOfType<PlayerManager>().Countertxt.text.ToString();
+            
         }
         if (other.gameObject.tag =="Player" && FindObjectOfType<PlayerManager>().NumberOfClone == 1)
         {
