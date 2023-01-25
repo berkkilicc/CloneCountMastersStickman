@@ -751,8 +751,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.02693, y: 0.48033655, z: 0.8490006}
-  m_Center: {x: 0.013741851, y: 0.06858478, z: 0.33379593}
+  m_Size: {x: 1.02693, y: 0.48033655, z: 2.5213177}
+  m_Center: {x: 0.013741851, y: 0.06858478, z: 1.1699545}
 --- !u!4 &630871716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4710023021411897401, guid: d906924e6830c724f97465f86677342c, type: 3}
@@ -5304,10 +5304,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3885374460311798178, guid: abff92f0e8e23e640aa17b2ea9956241, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 1745846610, guid: abff92f0e8e23e640aa17b2ea9956241, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 559573465}
     - target: {fileID: 5008603627266994250, guid: abff92f0e8e23e640aa17b2ea9956241, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -5322,7 +5322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5008603627266994250, guid: abff92f0e8e23e640aa17b2ea9956241, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.22
+      value: 53.82
       objectReference: {fileID: 0}
     - target: {fileID: 5008603627266994250, guid: abff92f0e8e23e640aa17b2ea9956241, type: 3}
       propertyPath: m_LocalRotation.w

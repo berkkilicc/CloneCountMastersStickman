@@ -20,6 +20,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject bloodEffects;
     [SerializeField] private GameObject bluebloodEffects;
 
+    //[SerializeField] ParticleSystem winner1;
+    //[SerializeField] ParticleSystem winner2;
+    //[SerializeField] ParticleSystem winner3;
+
     [Header("Raycast")]
 
     RaycastHit hit;
@@ -29,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Camera")]
     [SerializeField] Camera mainCam;
     [SerializeField] Camera secondCam;
+    [SerializeField] Camera finishCam;
 
     [Header("Move")]
 
@@ -58,7 +63,13 @@ public class PlayerManager : MonoBehaviour
         anim =GetComponent<Animator>();
         mainCam.gameObject.SetActive(true);
         secondCam.gameObject.SetActive(false);
-
+        finishCam.gameObject.SetActive(false);
+        //winner1 = GetComponent<ParticleSystem>();
+        //winner2 = GetComponent<ParticleSystem>();
+        //winner3 = GetComponent<ParticleSystem>();
+        //winner1.Stop();
+        //winner2.Stop();
+        //winner3.Stop();
 
 
     }
@@ -185,7 +196,14 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.tag == "Boss")
         {
             Destroy(other.gameObject,2f);
-            playerMoveSpeed = 0;
+
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Animator>().SetBool("attack", true);
+                transform.GetChild(i).GetComponent<Animator>().SetBool("run", false);
+            }
+            
+            playerMoveSpeed = 1f;
             playerTouchSpeed = 1;
         }
 
@@ -193,6 +211,16 @@ public class PlayerManager : MonoBehaviour
         {
             mainCam.gameObject.SetActive(false);
             secondCam.gameObject.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Finish")
+        {
+            mainCam.gameObject.SetActive(false);
+            secondCam.gameObject.SetActive(false);
+            finishCam.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+            
+            
         }
     }
 

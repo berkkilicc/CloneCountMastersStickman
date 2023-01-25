@@ -975,6 +975,7 @@ GameObject:
   - component: {fileID: 1396694926917806640}
   - component: {fileID: 3885374460311798178}
   - component: {fileID: 8306258121847033227}
+  - component: {fileID: 1745846610}
   m_Layer: 0
   m_Name: EnemyBoss
   m_TagString: Boss
@@ -1008,20 +1009,14 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5677335826838268656}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4cb83ea422886b24385c0ab2e156da19, type: 3}
+  m_Avatar: {fileID: 9000000, guid: dcc79b202d468954ca5459b30567541a, type: 3}
   m_Controller: {fileID: 9100000, guid: 03b0a284648ced449a97b27e3ea82831, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
-    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
-    'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom animation
-    clip 'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -1033,7 +1028,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5677335826838268656}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.37072942
   m_Height: 1.8289416
@@ -1055,6 +1050,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1745846610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677335826838268656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f11fe9c7266a94495e0b0d8201a39d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5809056710097461324
 GameObject:
   m_ObjectHideFlags: 0
