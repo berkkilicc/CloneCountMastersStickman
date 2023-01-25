@@ -25,6 +25,11 @@ public class PlayerManager : MonoBehaviour
     RaycastHit hit;
     public LayerMask Enemy;
 
+
+    [Header("Camera")]
+    [SerializeField] Camera mainCam;
+    [SerializeField] Camera secondCam;
+
     [Header("Move")]
 
     public bool Touch;
@@ -42,12 +47,6 @@ public class PlayerManager : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-       
-    }
-
-
     void Start()
     {
         player = transform;
@@ -57,7 +56,8 @@ public class PlayerManager : MonoBehaviour
         gameState = false;
         attack = false;
         anim =GetComponent<Animator>();
-
+        mainCam.gameObject.SetActive(true);
+        secondCam.gameObject.SetActive(false);
 
 
 
@@ -187,6 +187,12 @@ public class PlayerManager : MonoBehaviour
             Destroy(other.gameObject,2f);
             playerMoveSpeed = 0;
             playerTouchSpeed = 1;
+        }
+
+        if (other.gameObject.tag == "SecondCam")
+        {
+            mainCam.gameObject.SetActive(false);
+            secondCam.gameObject.SetActive(true);
         }
     }
 

@@ -56,6 +56,12 @@ public class Attack : MonoBehaviour
             FindObjectOfType<PlayerManager>().attack = false;
             FindObjectOfType<PlayerManager>().playerMoveSpeed = 5f;
         }
+        if (other.gameObject.tag == "Boss")
+        {
+            Destroy(other.gameObject, 2f);
+            FindObjectOfType<PlayerManager>().playerMoveSpeed = 0f;
+            FindObjectOfType<PlayerManager>().playerTouchSpeed = 0f;
+        }
 
 
     }

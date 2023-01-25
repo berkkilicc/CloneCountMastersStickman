@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
+ 
     public Transform followTarget;
     public Vector3 offset;
     public float smooth = 0.125f;
 
+ 
     private void LateUpdate()
     {
         if (followTarget !=null)
@@ -22,9 +24,6 @@ public class FollowCamera : MonoBehaviour
             return;
             
         }
-
-
     }
 
-   
 }
