@@ -59,10 +59,14 @@ public class Attack : MonoBehaviour
         }
         if (other.gameObject.tag == "Boss")
         {
-            Destroy(other.gameObject, 5f);
+            Destroy(other.gameObject, 2f);
             GetComponent<Animator>().SetBool("attack", true);
-            FindObjectOfType<PlayerManager>().playerMoveSpeed = 0.1f;
+            FindObjectOfType<PlayerManager>().playerMoveSpeed = 0.3f;
             FindObjectOfType<PlayerManager>().playerTouchSpeed = 0f;
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("attack", false);
         }
         if (other.gameObject.tag == "Finish")
         {

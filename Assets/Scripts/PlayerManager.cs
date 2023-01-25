@@ -20,9 +20,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject bloodEffects;
     [SerializeField] private GameObject bluebloodEffects;
 
-    //[SerializeField] ParticleSystem winner1;
-    //[SerializeField] ParticleSystem winner2;
-    //[SerializeField] ParticleSystem winner3;
+
 
     [Header("Raycast")]
 
@@ -47,13 +45,14 @@ public class PlayerManager : MonoBehaviour
     public float playerMoveSpeed;
 
 
-    //[SerializeField] private Transform enemyarea;
+   
     public bool attack;
 
 
 
     void Start()
     {
+        
         player = transform;
         NumberOfClone = transform.childCount - 1;
         Countertxt.text = NumberOfClone.ToString();
@@ -64,12 +63,7 @@ public class PlayerManager : MonoBehaviour
         mainCam.gameObject.SetActive(true);
         secondCam.gameObject.SetActive(false);
         finishCam.gameObject.SetActive(false);
-        //winner1 = GetComponent<ParticleSystem>();
-        //winner2 = GetComponent<ParticleSystem>();
-        //winner3 = GetComponent<ParticleSystem>();
-        //winner1.Stop();
-        //winner2.Stop();
-        //winner3.Stop();
+
 
 
     }
@@ -96,10 +90,17 @@ public class PlayerManager : MonoBehaviour
             }
 
         }
+        else
+        {
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Animator>().SetBool("run", false);
+            }
+        }
         if (FindObjectOfType<Enemy>().enemyOfClone == 0)
         {
             attack = false;
-            //playerMoveSpeed = 5f;
+
             
         }
 
@@ -203,8 +204,17 @@ public class PlayerManager : MonoBehaviour
                 transform.GetChild(i).GetComponent<Animator>().SetBool("run", false);
             }
             
-            playerMoveSpeed = 1f;
+            playerMoveSpeed = 0.3f;
             playerTouchSpeed = 1;
+        }
+        else
+        {
+            playerMoveSpeed = 5f;
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Animator>().SetBool("attack", false);
+                transform.GetChild(i).GetComponent<Animator>().SetBool("run", true);
+            }
         }
 
         if (other.gameObject.tag == "SecondCam")
